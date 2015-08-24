@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-link-tags",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An ember-cli addon to easily add <link> tags to the head of a HTML document.",
   "directories": {
     "doc": "doc",
