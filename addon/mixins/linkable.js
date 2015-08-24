@@ -26,7 +26,7 @@ export default Ember.Mixin.create({
   removeLinksFromHead: function() {
     var linkSelectors = this.get('currentRouteLinkSelectors');
 
-    if(!linkSelectors) {
+    if (!linkSelectors) {
       return;
     }
 
@@ -55,7 +55,7 @@ export default Ember.Mixin.create({
     linkElements = [];
 
     Object.keys(links).map(function(relationship) {
-      if(links.hasOwnProperty(relationship)) {
+      if (links.hasOwnProperty(relationship)) {
         linkSelectors.push('link[rel="' + relationship + '"]');
         linkElements.push(cloneLink().attr('rel', relationship).attr('href', links[relationship]));
       }
@@ -86,7 +86,7 @@ export default Ember.Mixin.create({
   _links: function() {
     var links = this.get('links');
 
-    if(typeof links === 'function') {
+    if (typeof links === 'function') {
       return links.apply(this);
     }
 

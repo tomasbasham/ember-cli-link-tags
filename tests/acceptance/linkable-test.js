@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
-import startApp from '../../helpers/start-app';
+import startApp from 'dummy/tests/helpers/start-app';
 
-var App;
+var application;
 
-module('Integration | Mixin | Linkable', {
+module('Acceptance | linkable', {
   beforeEach: function() {
-    App = startApp();
+    application = startApp();
   },
 
   afterEach: function() {
-    Ember.run(App, 'destroy');
+    Ember.run(application, 'destroy');
   }
 });
 

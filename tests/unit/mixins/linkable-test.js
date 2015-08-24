@@ -3,7 +3,7 @@ import LinkableMixin from 'ember-cli-link-tags/mixins/linkable';
 import sinon from 'sinon';
 import { module, test } from 'qunit';
 
-module('Unit | Mixin | Linkable');
+module('Unit | Mixin | linkable');
 
 test('it works', function(assert) {
   var LinkableRoute = Ember.Route.extend(LinkableMixin);
