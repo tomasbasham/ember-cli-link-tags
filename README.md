@@ -10,7 +10,7 @@ This addon is ideal for use with SEO tools such as [MOZ](https://moz.com/) to si
 
 From within your Ember CLI project directory run:
 ```
-ember install:addon ember-cli-link-tags
+ember install ember-cli-link-tags
 ```
 
 ## Usage
