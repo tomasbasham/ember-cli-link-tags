@@ -26,7 +26,7 @@ This method of setting link tags allows you to provide key/value paris of link a
 ```JavaScript
 // app/routes/posts.js
 import Ember from 'ember';
-import Linkable from 'ember-cli-link-tags';
+import Linkable from 'ember-cli-link-tags/mixins/linkable';
 
 export default Ember.Route.extend(Linkable, {
   links: function() {
@@ -49,7 +49,7 @@ You may also use a plain JavaScript object to define purely static links.
 ```JavaScript
 // app/routes/posts.js
 import Ember from 'ember';
-import Linkable from 'ember-cli-link-tags';
+import Linkable from 'ember-cli-link-tags/mixins/linkable';
 
 export default Ember.Route.extend(Linkable, {
   links: {
