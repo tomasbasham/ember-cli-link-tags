@@ -2,9 +2,9 @@
 
 An [Ember CLI](http://www.ember-cli.com/) addon to easily add `<link>` tags to the head of a HTML document.
 
-There are many reasons to define a link between a HTML document and an internal or external resource. One reason is to provide search engines and SEO tools the best URL when there are several choices. This can occur for example when there are multiple variants of the same resource. This addon allows you to define these links statically or dynamically when transitioning between routes.
+There may be many reasons to define a link between a HTML document and an internal or external resource. One reason is to provide search engines and SEO tools the best URL when there are several choices. This can occur for example when there are multiple variants of the same resource. This addon allows you to define these links statically or dynamically when transitioning between routes.
 
-This addon is ideal for use with SEO tools such as [MOZ](https://moz.com/) to significantly improve impression on Google and other search engines whilst reducing situations where content is mistakenly conceived as duplicate.
+This addon is ideal for use with SEO tools such as [MOZ](https://moz.com/) to significantly improve impressions on Google and other search engines whilst reducing situations where content is mistakenly conceived as duplicate.
 
 ## Installation
 
@@ -19,14 +19,14 @@ To use this addon you must include the `Linkable` mixin within the routes you in
 
 ### Function
 
-This method of setting link tags allows you to provide key/value paris of link attributes dynamically using the model defined on the route or any other attributes set on the controller. The `links` function returns a plain JavaScript object with the appropriate key/value pairs.
+Using this method to define link tags you must provide key/value paris of link attributes dynamically using the model defined on the route or any other attributes set on the controller. The `links` function returns a plain JavaScript object with the appropriate key/value pairs.
 
 ##### <a name="method-example"></a>Example:
 
 ```JavaScript
 // app/routes/posts.js
 import Ember from 'ember';
-import Linkable from 'ember-cli-link-tags';
+import Linkable from 'ember-cli-link-tags/mixins/linkable';
 
 export default Ember.Route.extend(Linkable, {
   links: function() {
@@ -49,7 +49,7 @@ You may also use a plain JavaScript object to define purely static links.
 ```JavaScript
 // app/routes/posts.js
 import Ember from 'ember';
-import Linkable from 'ember-cli-link-tags';
+import Linkable from 'ember-cli-link-tags/mixins/linkable';
 
 export default Ember.Route.extend(Linkable, {
   links: {
