@@ -19,7 +19,7 @@ To use this addon you must include the `Linkable` mixin within the routes you in
 
 ### Function
 
-Using this method to define link tags you must provide key/value paris of link attributes dynamically using the model defined on the route or any other attributes set on the controller. The `links` function returns a plain JavaScript object with the appropriate key/value pairs.
+Using this method to define link tags you must provide key/value paias of link attributes dynamically using the model defined on the route or any other attributes set on the controller. The `links` function returns a plain JavaScript object with the appropriate key/value pairs.
 
 ##### <a name="method-example"></a>Example:
 

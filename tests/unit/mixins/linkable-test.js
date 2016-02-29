@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import LinkableMixin from 'ember-cli-link-tags/mixins/linkable';
-import sinon from 'sinon';
+import LinkableMixin from '../../../mixins/linkable';
 import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 module('Unit | Mixin | linkable');
 
