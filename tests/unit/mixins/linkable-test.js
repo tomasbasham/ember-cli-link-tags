@@ -1,35 +1,37 @@
 import Ember from 'ember';
 import LinkableMixin from '../../../mixins/linkable';
 import { module, test } from 'qunit';
-import sinon from 'sinon';
+import Sinon from 'sinon';
+
+const {
+  run
+} = Ember;
+
+const {
+  spy
+} = Sinon;
 
 module('Unit | Mixin | linkable');
 
-test('it works', function(assert) {
-  var LinkableRoute = Ember.Route.extend(LinkableMixin);
-  var subject = LinkableRoute.create();
-  assert.ok(subject);
-});
-
 test('it calls removeLinksFromHead', function(assert) {
-  var LinkableRoute = Ember.Route.extend(LinkableMixin);
-  var subject = LinkableRoute.create();
+  let LinkableRoute = Ember.Route.extend(LinkableMixin);
+  let subject = LinkableRoute.create();
 
-  subject.removeLinksFromHead = sinon.spy();
+  subject.removeLinksFromHead = spy();
   subject.send('willTransition');
 
   assert.ok(subject.removeLinksFromHead.calledOnce);
 });
 
 test('it calls addLinksToHead', function(assert) {
-  var LinkableRoute = Ember.Route.extend(LinkableMixin);
-  var subject = LinkableRoute.create();
-  var called = assert.async();
+  let LinkableRoute = Ember.Route.extend(LinkableMixin);
+  let subject = LinkableRoute.create();
+  let called = assert.async();
 
-  subject.addLinksToHead = sinon.spy();
+  subject.addLinksToHead = spy();
   subject.send('didTransition');
 
-  Ember.run.next(function() {
+  run.next(function() {
     assert.ok(subject.addLinksToHead.calledOnce);
     called();
   });

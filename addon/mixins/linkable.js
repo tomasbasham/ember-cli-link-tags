@@ -1,17 +1,15 @@
 import Ember from 'ember';
+import documentHead from 'ember-cli-link-tags/utils/document-head';
 
-/*
- * Return the head element used
- * to append link tags.
- *
- * @method documentHead
- *
- * @return {Object}
- *   The head element in the DOM.
- */
-function documentHead() {
-  return Ember.$('head');
-}
+const {
+  get,
+  isEmpty,
+  set
+} = Ember;
+
+const {
+  keys
+} = Object;
 
 export default Ember.Mixin.create({
 
@@ -23,16 +21,16 @@ export default Ember.Mixin.create({
    *
    * @method removeLinksFromHead
    */
-  removeLinksFromHead: function() {
-    var linkSelectors = this.get('currentRouteLinkSelectors');
+  removeLinksFromHead() {
+    const linkSelectors = get(this, 'currentRouteLinkSelectors');
 
-    if (!linkSelectors) {
+    if (isEmpty(linkSelectors)) {
       return;
     }
 
     // Remove all the link tags from the head.
-    documentHead().find(linkSelectors.join(',')).remove();
-    this.set('currentRouteLinkSelectors', null);
+    documentHead.find(linkSelectors.join(',')).remove();
+    set(this, 'currentRouteLinkSelectors', null);
   },
 
   /*
@@ -43,25 +41,23 @@ export default Ember.Mixin.create({
    *
    * @method addLinksToHead
    */
-  addLinksToHead: function() {
-    var cloneLink, links, linkSelectors, linkElements;
-
-    cloneLink = function() {
+  addLinksToHead() {
+    const cloneLink = function() {
       return Ember.$('<link>').clone();
     };
 
-    links = this._links();
-    linkSelectors = [];
-    linkElements = [];
+    const links = this._links();
+    const linkSelectors = [];
+    const linkElements = [];
 
-    Object.keys(links).map(function(relationship) {
+    keys(links).map(function(relationship) {
       if (links.hasOwnProperty(relationship)) {
-        linkSelectors.push('link[rel="' + relationship + '"]');
+        linkSelectors.push(`link[rel="${relationship}"]`);
         linkElements.push(cloneLink().attr('rel', relationship).attr('href', links[relationship]));
       }
     });
 
-    documentHead().append(linkElements);
+    documentHead.append(linkElements);
     this.set('currentRouteLinkSelectors', linkSelectors);
   },
 
@@ -83,8 +79,8 @@ export default Ember.Mixin.create({
    * @return {Object}
    *   Link values.
    */
-  _links: function() {
-    var links = this.get('links');
+  _links() {
+    const links = get(this, 'links');
 
     if (typeof links === 'function') {
       return links.apply(this);
@@ -102,7 +98,7 @@ export default Ember.Mixin.create({
      *
      * @method willTransition
      */
-    willTransition: function() {
+    willTransition() {
       this._super.apply(this, arguments);
       this.removeLinksFromHead();
     },
@@ -114,7 +110,7 @@ export default Ember.Mixin.create({
      *
      * @method didTransition
      */
-    didTransition: function() {
+    didTransition() {
       this._super.apply(this, arguments);
       Ember.run.next(this, this.addLinksToHead);
     }
