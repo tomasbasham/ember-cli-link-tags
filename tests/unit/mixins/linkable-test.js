@@ -7,32 +7,38 @@ const {
   run
 } = Ember;
 
-const {
-  spy
-} = Sinon;
+let sandbox;
 
-module('Unit | Mixin | linkable');
+module('Unit | Mixin | linkable', {
+  beforeEach() {
+    sandbox = Sinon.sandbox.create();
+  },
+
+  afterEach() {
+    sandbox.restore();
+  }
+});
 
 test('it calls removeLinksFromHead', function(assert) {
   let LinkableRoute = Ember.Route.extend(LinkableMixin);
   let subject = LinkableRoute.create();
 
-  subject.removeLinksFromHead = spy();
-  subject.send('willTransition');
+  const spy = sandbox.spy(subject, 'removeLinksFromHead');
 
-  assert.ok(subject.removeLinksFromHead.calledOnce);
+  subject.send('willTransition');
+  assert.ok(spy.calledOnce);
 });
 
 test('it calls addLinksToHead', function(assert) {
   let LinkableRoute = Ember.Route.extend(LinkableMixin);
   let subject = LinkableRoute.create();
-  let called = assert.async();
 
-  subject.addLinksToHead = spy();
+  const done = assert.async();
+  const spy = sandbox.spy(subject, 'addLinksToHead');
+
   subject.send('didTransition');
-
   run.next(function() {
-    assert.ok(subject.addLinksToHead.calledOnce);
-    called();
+    assert.ok(spy.calledOnce);
+    done();
   });
 });
