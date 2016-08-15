@@ -101,6 +101,7 @@ export default Ember.Mixin.create({
     willTransition() {
       this._super.apply(this, arguments);
       this.removeLinksFromHead();
+      return true;
     },
 
     /*
@@ -113,6 +114,7 @@ export default Ember.Mixin.create({
     didTransition() {
       this._super.apply(this, arguments);
       Ember.run.next(this, this.addLinksToHead);
+      return true;
     }
   }
 });
