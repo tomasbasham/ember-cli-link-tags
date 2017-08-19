@@ -1,6 +1,6 @@
 # Ember-cli-link-tags [![Build Status](https://travis-ci.org/tomasbasham/ember-cli-link-tags.svg?branch=master)](https://travis-ci.org/tomasbasham/ember-cli-link-tags)
 
-An [Ember CLI](http://www.ember-cli.com/) addon to easily add `<link>` tags to the head of a HTML document.
+An [Ember CLI](https://ember-cli.com/) addon to easily add `<link>` tags to the head of a HTML document.
 
 There may be many reasons to define a link between a HTML document and an internal or external resource. One reason is to provide search engines and SEO tools the best URL when there are several choices. This can occur for example when there are multiple variants of the same resource. This addon allows you to define these links statically or dynamically when transitioning between routes.
 
@@ -65,17 +65,18 @@ This will add the `canonical` and `next` link tags to the head of the document. 
 
 ### Installation
 
-* `git clone` this repository
+* `git clone <repository-url>` this repository
+* `cd ember-cli-link-tags`
 * `npm install`
-* `bower install`
 
 ### Running
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Running Tests
 
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -83,4 +84,4 @@ This will add the `canonical` and `next` link tags to the head of the document. 
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
