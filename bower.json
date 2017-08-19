@@ -1,6 +1,0 @@
-{
-  "name": "ember-cli-link-tags",
-  "dependencies": {
-    "sinonjs": "~1.14.1"
-  }
-}
