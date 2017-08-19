@@ -35,3 +35,8 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+
+notifications:
+  email: false
+  slack:
+    secure: "R+NL6Kx1QSSQC+5Z21KY8ZYKLPokDwMAmpOwn6unwGxH1Z5s0lu+zGKyC7QzQ4Rw3RyWGMk5NmRj9B352CceiAFE/WMkw/8cmvz3kO6Eu07j5mkFXoKaPKU4mFb8vpWkpBK5+lG4HsBzf0rbzZJg+WuBHumcqKVHtjomjDfAiEgULB5AOqfavMxmGA1kML6zvCGEyv9zVwXHvWXn8v+lYp/IsSgGhiHD/h0h62zFXSMdc/4OoxLS9U7QpAR3OfFnWNMfsMsnWWV8Ry/nbvUaG0kvxHgGxjG2xkMRcAPXyVgjO9gmgUnR6WVDCYr6WjBuEWwMOo559T18xVeCg7IjBs8XhRrRbbrne4WAIrPRC/h1q+apxtkXDQy9mXc43MagSWwqvnVyKoNz9OypEsdrv/a3nUkZp9VxB5RutnMVJ0XXskeHx6EI8+r5ss4+XDVl/yTUVsqPZwxTa3fdtpLHF30DacFa8dwuHu9fgBf15qAgDdCjFXqEO2RrVlU0OQyDPdf+ySC5++F9nmtn3nk/iBicCaC4pm83NakNnBozYfaJoIUkDZMFi6eW0AVH814aJCapaUOOznYKMufzzq6ZyTxn5+O4XXRq69iYPpFfh2ORKu92vYeAcxWOBf4mXq7TQmBHfTKxNzVMzbxKFOXoguVpSfnelS2LL6DJI6ZNUjo="
