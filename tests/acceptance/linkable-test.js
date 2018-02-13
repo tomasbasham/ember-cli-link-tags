@@ -1,21 +1,11 @@
-import Ember from 'ember';
-import { module, test } from 'qunit';
-import startApp from 'dummy/tests/helpers/start-app';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
-let application;
-
-module('Acceptance | linkable', {
-  beforeEach: function() {
-    application = startApp();
-  },
-
-  afterEach: function() {
-    Ember.run(application, 'destroy');
-  }
-});
+moduleForAcceptance('Acceptance | linkable');
 
 test('it sets link tags', function(assert) {
   visit('/index');
+
   andThen(function() {
     let canonical = find('link[rel="canonical"]', 'head');
 
@@ -24,6 +14,7 @@ test('it sets link tags', function(assert) {
   });
 
   visit('/posts');
+
   andThen(function() {
     let canonical = find('link[rel="canonical"]', 'head');
     let next = find('link[rel="next"]', 'head');

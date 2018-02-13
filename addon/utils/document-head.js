@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import $ from 'jquery';
 
 const documentHead = (
   typeof window !== 'undefined' &&
-  window.document.head &&
-  Ember.$(window.document.head)
+    window.document.head &&
+    $(window.document.head)
 );
 
 export default documentHead;

@@ -1,4 +1,4 @@
-# Ember-cli-link-tags [![Build Status](https://travis-ci.org/tomasbasham/ember-cli-link-tags.svg?branch=master)](https://travis-ci.org/tomasbasham/ember-cli-link-tags)
+# ember-cli-link-tags [![Build Status](https://travis-ci.org/tomasbasham/ember-cli-link-tags.svg?branch=master)](https://travis-ci.org/tomasbasham/ember-cli-link-tags)
 
 An [Ember CLI](https://ember-cli.com/) addon to easily add `<link>` tags to the
 head of a HTML document.
@@ -23,29 +23,31 @@ ember install ember-cli-link-tags
 ## Usage
 
 To use this addon you must include the `Linkable` mixin within the routes you
-intend to define links. The mixin allows you to define links in two ways; as a
-function that runs within the context of the route; or as a plain JavaScript
-object.
+intend to define links. The mixin allows you to define links as plain
+JavaScript Objects (POJOs) returned from a `links` method that runs within the
+context of the route.
 
-### Function
+### Links Method
 
-Using this method to define link tags you must provide key/value pairs of link
-attributes dynamically using the model defined on the route or any other
-attributes set on the controller. The `links` function returns a plain
-JavaScript object with the appropriate key/value pairs.
+Link tags are described as key/value pairs of attributes that may be formed
+dynamically using the model defined on the route or any other attributes set on
+the controller. The `links` function returns a plain JavaScript object with the
+appropriate key/value pairs.
 
-##### Method Example
+##### Links Example
 
 ```JavaScript
 // app/routes/posts.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Linkable from 'ember-cli-link-tags/mixins/linkable';
 
-export default Ember.Route.extend(Linkable, {
-  links: function() {
+import { get } from '@ember/object';
+
+export default Route.extend(Linkable, {
+  links() {
     return {
       canonical: '/posts',
-      next: '/posts?page=' + this.get('controller.nextPage')
+      next: '/posts?page=' + get(this, 'controller.nextPage')
     };
   }
 });
@@ -55,29 +57,6 @@ This will add the `canonical` and `next` link tags to the head of the document.
 The value of `nextPage` is taken from the controller and appended to the end of
 the `next` value. Of course the key/value pairs returned by the function can be
 whatever you want and application specific.
-
-### POJO
-
-You may also use a plain JavaScript object to define purely static links.
-
-##### Object Example
-
-```JavaScript
-// app/routes/posts.js
-import Ember from 'ember';
-import Linkable from 'ember-cli-link-tags/mixins/linkable';
-
-export default Ember.Route.extend(Linkable, {
-  links: {
-    canonical: '/posts',
-    next: '/posts?page=2'
-  }
-});
-```
-
-This will add the `canonical` and `next` link tags to the head of the document.
-The key/value pairs here are all static and defined before runtime. Of course
-the key/value pairs can be whatever you want and application specific.
 
 ## Development
 

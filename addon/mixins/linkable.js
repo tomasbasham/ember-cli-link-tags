@@ -1,17 +1,13 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
+
 import documentHead from 'ember-cli-link-tags/utils/document-head';
 
-const {
-  get,
-  isEmpty,
-  set
-} = Ember;
+import { get, set } from '@ember/object';
+import { run } from '@ember/runloop';
+import { isEmpty } from '@ember/utils';
 
-const {
-  keys
-} = Object;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /*
    * Remove all link tags from the DOM
@@ -43,14 +39,14 @@ export default Ember.Mixin.create({
    */
   addLinksToHead() {
     const cloneLink = function() {
-      return Ember.$('<link>').clone();
+      return $('<link>').clone();
     };
 
     const links = this._links();
     const linkSelectors = [];
     const linkElements = [];
 
-    keys(links).map(function(relationship) {
+    Object.keys(links).map(function(relationship) {
       if (links.hasOwnProperty(relationship)) {
         linkSelectors.push(`link[rel="${relationship}"]`);
         linkElements.push(cloneLink().attr('rel', relationship).attr('href', links[relationship]));
@@ -99,7 +95,7 @@ export default Ember.Mixin.create({
      * @method willTransition
      */
     willTransition() {
-      this._super.apply(this, arguments);
+      this._super(...arguments);
       this.removeLinksFromHead();
       return true;
     },
@@ -112,8 +108,8 @@ export default Ember.Mixin.create({
      * @method didTransition
      */
     didTransition() {
-      this._super.apply(this, arguments);
-      Ember.run.next(this, this.addLinksToHead);
+      this._super(...arguments);
+      run.next(this, this.addLinksToHead);
       return true;
     }
   }

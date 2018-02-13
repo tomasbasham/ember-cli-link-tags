@@ -1,4 +1,4 @@
-import documentHead from '../../../utils/document-head';
+import documentHead from 'dummy/utils/document-head';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | document head');

@@ -1,11 +1,10 @@
-import Ember from 'ember';
-import LinkableMixin from '../../../mixins/linkable';
-import { module, test } from 'qunit';
+import Route from '@ember/routing/route';
 import Sinon from 'sinon';
 
-const {
-  run
-} = Ember;
+import LinkableMixin from 'ember-cli-link-tags/mixins/linkable';
+
+import { run } from '@ember/runloop';
+import { module, test } from 'qunit';
 
 let sandbox;
 
@@ -20,7 +19,7 @@ module('Unit | Mixin | linkable', {
 });
 
 test('it calls removeLinksFromHead', function(assert) {
-  let LinkableRoute = Ember.Route.extend(LinkableMixin);
+  let LinkableRoute = Route.extend(LinkableMixin);
   let subject = LinkableRoute.create();
 
   const spy = sandbox.spy(subject, 'removeLinksFromHead');
@@ -30,7 +29,7 @@ test('it calls removeLinksFromHead', function(assert) {
 });
 
 test('it calls addLinksToHead', function(assert) {
-  let LinkableRoute = Ember.Route.extend(LinkableMixin);
+  let LinkableRoute = Route.extend(LinkableMixin);
   let subject = LinkableRoute.create();
 
   const done = assert.async();
