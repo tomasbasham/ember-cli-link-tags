@@ -13,6 +13,11 @@ This addon is ideal for use with SEO tools such as [MOZ](https://moz.com/) to
 significantly improve impressions on Google and other search engines whilst
 reducing situations where content is mistakenly conceived as duplicate.
 
+## Compatibility
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
 ## Installation
 
 From within your Ember CLI project directory run:
@@ -58,29 +63,6 @@ The value of `nextPage` is taken from the controller and appended to the end of
 the `next` value. Of course the key/value pairs returned by the function can be
 whatever you want and application specific.
 
-## Development
+## License
 
-### Installation
-
-* `git clone <repository-url>` this repository
-* `cd ember-cli-link-tags`
-* `npm install`
-
-### Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember
-  versions)
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build`
-
-For more information on using ember-cli, visit
-[https://ember-cli.com/](https://ember-cli.com/).
+This project is licensed under the [MIT License](LICENSE.md).
