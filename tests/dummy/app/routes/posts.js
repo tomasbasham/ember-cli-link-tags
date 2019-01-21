@@ -6,6 +6,6 @@ export default Route.extend(Linkable, {
     return {
       canonical: '/posts',
       next: '/posts?page=2'
-    }
+    };
   }
 });

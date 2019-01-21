@@ -1,22 +1,21 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-moduleForAcceptance('Acceptance | linkable');
+module('Acceptance | linkable', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('it sets link tags', function(assert) {
-  visit('/index');
+  test('it sets link tags', async function(assert) {
+    await visit('/index');
 
-  andThen(function() {
     let canonical = find('link[rel="canonical"]', 'head');
 
     assert.equal(canonical.length, 1);
     assert.equal(canonical.first().attr('href'), '/');
-  });
 
-  visit('/posts');
+    await visit('/posts');
 
-  andThen(function() {
-    let canonical = find('link[rel="canonical"]', 'head');
+    canonical = find('link[rel="canonical"]', 'head');
     let next = find('link[rel="next"]', 'head');
 
     assert.equal(canonical.length, 1);
