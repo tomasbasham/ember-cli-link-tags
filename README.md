@@ -1,4 +1,4 @@
-# ember-cli-link-tags [![Build Status](https://travis-ci.org/tomasbasham/ember-cli-link-tags.svg?branch=master)](https://travis-ci.org/tomasbasham/ember-cli-link-tags)
+# ember-cli-link-tags [![Build Status](https://travis-ci.com/tomasbasham/ember-cli-link-tags.svg?branch=master)](https://travis-ci.com/tomasbasham/ember-cli-link-tags)
 
 An [Ember CLI](https://ember-cli.com/) addon to easily add `<link>` tags to the
 head of a HTML document.
