@@ -1,9 +1,8 @@
 import Mixin from '@ember/object/mixin';
-import $ from 'jquery';
 
 import documentHead from 'ember-cli-link-tags/utils/document-head';
 
-import { get, set } from '@ember/object';
+import { get, getWithDefault, set } from '@ember/object';
 import { run } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
 
@@ -24,8 +23,10 @@ export default Mixin.create({
       return;
     }
 
+    const selectorString = linkSelectors.join(',');
+
     // Remove all the link tags from the head.
-    documentHead.find(linkSelectors.join(',')).remove();
+    documentHead.querySelectorAll(selectorString).forEach(e => e.remove());
     set(this, 'currentRouteLinkSelectors', null);
   },
 
@@ -38,22 +39,18 @@ export default Mixin.create({
    * @method addLinksToHead
    */
   addLinksToHead() {
-    const cloneLink = function() {
-      return $('<link>').clone();
-    };
-
     const links = this._links();
     const linkSelectors = [];
     const linkElements = [];
 
-    Object.keys(links).map(function(relationship) {
+    for (let relationship in links) {
       if (links.hasOwnProperty(relationship)) {
         linkSelectors.push(`link[rel="${relationship}"]`);
-        linkElements.push(cloneLink().attr('rel', relationship).attr('href', links[relationship]));
+        linkElements.push(this._createLink(relationship, links[relationship]));
       }
-    });
+    }
 
-    documentHead.append(linkElements);
+    linkElements.forEach(e => documentHead.appendChild(e));
     this.set('currentRouteLinkSelectors', linkSelectors);
   },
 
@@ -76,13 +73,39 @@ export default Mixin.create({
    *   Link values.
    */
   _links() {
-    const links = get(this, 'links');
+    const links = getWithDefault(this, 'links', {});
 
     if (typeof links === 'function') {
       return links.apply(this);
     }
 
-    return links || {};
+    return links;
+  },
+
+  /*
+   * Create and return a new link DOM
+   * element with the both a rel and href
+   * attribute.
+   *
+   * @method createLink
+   * @private
+   *
+   * @param {String} relationship
+   *   String value to be placed in the rel attribute.
+   *
+   * @param {String} href
+   *   String value to be placed in the href attribute.
+   *
+   * @return {Element}
+   *   Link element.
+   */
+  _createLink(relationship, href) {
+    const link = window.document.createElement('link');
+
+    link.setAttribute('rel', relationship);
+    link.setAttribute('href', href);
+
+    return link;
   },
 
   actions: {

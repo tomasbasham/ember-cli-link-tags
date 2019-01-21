@@ -8,20 +8,23 @@ module('Acceptance | linkable', function(hooks) {
   test('it sets link tags', async function(assert) {
     await visit('/index');
 
-    let canonical = find('link[rel="canonical"]', 'head');
+    let canonical = document.head.querySelector('link[rel="canonical"]');
 
-    assert.equal(canonical.length, 1);
-    assert.equal(canonical.first().attr('href'), '/');
+    assert.ok(canonical);
+    assert.equal(canonical.getAttribute('rel'), 'canonical');
+    assert.equal(canonical.getAttribute('href'), '/');
 
     await visit('/posts');
 
-    canonical = find('link[rel="canonical"]', 'head');
-    let next = find('link[rel="next"]', 'head');
+    canonical = document.head.querySelector('link[rel="canonical"]');
+    let next = document.head.querySelector('link[rel="next"]');
 
-    assert.equal(canonical.length, 1);
-    assert.equal(canonical.first().attr('href'), '/posts');
+    assert.ok(canonical);
+    assert.equal(canonical.getAttribute('rel'), 'canonical');
+    assert.equal(canonical.getAttribute('href'), '/posts');
 
-    assert.equal(next.length, 1);
-    assert.equal(next.first().attr('href'), '/posts?page=2');
+    assert.ok(next);
+    assert.equal(next.getAttribute('rel'), 'next');
+    assert.equal(next.getAttribute('href'), '/posts?page=2');
   });
 });

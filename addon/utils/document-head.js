@@ -1,9 +1,1 @@
-import $ from 'jquery';
-
-const documentHead = (
-  typeof window !== 'undefined' &&
-    window.document.head &&
-    $(window.document.head)
-);
-
-export default documentHead;
+export default (typeof window !== 'undefined' && window.document.head);
